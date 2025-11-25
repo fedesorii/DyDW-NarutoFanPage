@@ -1,11 +1,22 @@
-html {
-  margin: 0;
+/* 1. Agregar box-sizing universal para evitar desbordamientos por padding */
+* {
   box-sizing: border-box;
+}
+
+:root {
+  --nav-offset: 6vh; /* valor por defecto para pantallas grandes */
+}
+
+html {
+  width: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-offset);
 }
 
 /* Estilos generales */
 body {
-  background-color: rgb(174, 255, 228);
+  background-color: #aeffe4;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
@@ -17,6 +28,12 @@ header {
   padding: 20px 0;
   margin-bottom: 20px;
   border-bottom: 2px solid #bbb;
+}
+
+header h1 {
+  color: #b85c2e;
+  font-size: 2em;
+  text-align: center;
 }
 
 h1 {
@@ -39,6 +56,7 @@ h3 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
+  z-index: 1000; /* z-index para que siempre esté por encima de todo */
 }
 
 .navBar ul {
@@ -47,9 +65,10 @@ h3 {
   align-items: center;
   width: 100%;
   border-radius: 0%;
-  background-color: rgb(187, 132, 49);
+  background-color: #bb8431;
   margin: 0;
   padding: 0;
+  justify-content: center;
 }
 
 .navBar ul li {
@@ -80,6 +99,7 @@ footer {
   bottom: 0;
   width: 100%;
   border-top: 2px solid #bbb;
+  margin-top: 5vh;
 }
 
 /* Main */
@@ -97,78 +117,6 @@ main img {
   margin-bottom: 10px;
 }
 
-/* Estilos para personajes.html */
-.personajes-list {
-  text-decoration: none;
-  list-style-type: none;
-}
-
-.personajes-list a {
-  color: #b85c2e;
-  text-decoration: none;
-}
-
-.personajes-grid {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin: 30px 0;
-  flex-wrap: wrap;
-}
-
-.personaje-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 22vw;
-  min-width: 180px;
-  max-width: 240px;
-}
-
-.personaje-item img {
-  width: 90%;
-  height: fit-content;
-  max-height: 220px;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 10px;
-  margin-bottom: 8px;
-}
-
-.personaje-item h3 {
-  margin: 0;
-  font-size: 1.1em;
-  color: #b85c2e;
-  text-align: center;
-}
-
-/* Responsive para móviles */
-@media (max-width: 900px) {
-  .personajes-grid {
-    gap: 12px;
-  }
-  .personaje-item {
-    width: 45vw;
-    max-width: 300px;
-  }
-}
-@media (max-width: 600px) {
-  .navBar ul {
-    flex-direction: column;
-  }
-  .navBar ul li a {
-    text-align: center;
-  }
-  .personajes-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-  .personaje-item {
-    width: 90vw;
-    max-width: 98vw;
-  }
-}
-
 ul {
   background-color: #fffbe6;
   border-radius: 10px;
@@ -183,39 +131,49 @@ ul li {
   font-size: 1.1em;
 }
 
-img[alt*="Naruto Uzumaki"] {
-  border: 3px solid orange;
+/* Responsive para móviles */
+@media (max-width: 900px) {
 }
+@media (max-width: 600px) {
+  :root {
+    --nav-offset: 15vh;
+  }
+  header h1 {
+    font-size: clamp(1.2rem, 3.2vw, 1.4rem);
+    margin-block-start: 0.4rem;
+    margin-block-end: 0.4rem;
+  }
+  main {
+    padding-inline: 4vw;
+  }
 
-img[alt*="Sasuke Uchiha"] {
-  border: 3px solid #222;
-}
-
-img[alt*="Sakura Haruno"] {
-  border: 3px solid #e75480;
-}
-
-img[alt*="Kakashi Hatake"] {
-  border: 3px solid #7f8fa6;
-}
-
-/* Estilos para capitulos.html */
-header h1 {
-  color: #b85c2e;
-  font-size: 2em;
-  text-align: center;
-}
-
-.capitulos-lista {
-  background-color: #f7f7f7;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px auto;
-  width: 80%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.capitulos-lista li {
-  margin: 10px 0;
-  font-size: 1.1em;
+  .navBar {
+    height: 15vh;
+    overflow: hidden;
+  }
+  .navBar ul {
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
+    gap: 0;
+  }
+  .navBar ul li {
+    width: 100%;
+    flex: 1 1 auto; /* cada item ocupa parte del 15vh */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 0.4vh; /* espacio vertical relativo */
+  }
+  .navBar ul li a {
+    font-size: clamp(
+      0.95rem,
+      2.8vh,
+      1.15rem
+    ); /* se adapta al alto de pantalla */
+    line-height: 1.05;
+    padding-inline: 1.2vw;
+    text-align: center;
+  }
 }

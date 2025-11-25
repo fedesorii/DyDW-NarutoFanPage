@@ -1,0 +1,143 @@
+main h1 {
+  color: #b85c2e; /* Mismo color de tema */
+  font-size: 2em;
+  text-align: center;
+}
+
+.capitulos-lista {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.capitulos-lista h3 {
+  color: darkblue; /* Color distintivo para el nombre del arco */
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  font-size: 1.3em;
+}
+
+.capitulos-lista ul {
+  background-color: transparent;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  list-style-type: disc; /* Usar puntos como marcador */
+  padding-inline-start: 40px; /* Indentación para la lista */
+  box-shadow: none;
+}
+
+.capitulos-lista ul li {
+  margin: 6px 0;
+  font-size: 1em;
+  color: #555;
+  background-color: transparent; /* Anular fondo de lista base si aplica */
+}
+
+.capitulos-lista p {
+  color: #333;
+  font-style: italic;
+  margin-block: 0.4rem 0.8rem;
+}
+
+/* Ajuste para móvil (Recomendado) */
+@media (max-width: 600px) {
+  .capitulos-lista {
+    width: 100%;
+    padding: 15px 20px;
+  }
+}
+
+/* **ANIMACIONES** */
+
+/* Sacar el marcador por defecto (el triangulito negro) */
+details.capitulos-lista > summary {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  padding-right: 20px; /* Espacio para el icono de + o - */
+}
+
+details.capitulos-lista > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Agregar un icono (+) al final del título */
+details.capitulos-lista > summary::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #b85c2e;
+  transition: transform 0.3s ease;
+}
+
+/* Cuando está abierto, cambiar el icono a (-) o rotarlo */
+details[open].capitulos-lista > summary::after {
+  content: "-";
+  transform: rotate(180deg);
+}
+
+/* Animación suave al aparecer la lista */
+details[open] ul {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Transición suave para el estado normal */
+.capitulos-lista {
+  /* Ya hay una descripcion de esta clase pero esto es especificamente de la animacion*/
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left 0.3s ease;
+  border-left: 5px solid transparent; /* Borde invisible inicial */
+}
+
+/* Efecto al pasar el mouse */
+.capitulos-lista:hover {
+  transform: translateY(-5px); /* Se levanta un poco */
+  box-shadow: 0 10px 20px rgba(184, 92, 46, 0.2); /* Sombra naranja suave */
+  border-left: 5px solid #b85c2e; /* Aparece una línea naranja a la izquierda */
+}
+
+.btn-subir {
+  position: fixed;
+  rotate: 270deg;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b85c2e;
+  color: white;
+  padding: 10px 15px;
+  padding-top: 11px; /* Ajuste fino para centrar el lado izquierdo (esta rotado) */
+  text-decoration: none;
+  font-size: 2rem;
+  line-height: 0; /* Evita espacios extraños en la altura de la fuente */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s, transform 0.2s;
+  z-index: 1100; /* Asegura que esté siempre encima */
+}
+
+.btn-subir:hover {
+  background-color: darkblue;
+}

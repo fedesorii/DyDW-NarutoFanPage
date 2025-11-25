@@ -1,0 +1,160 @@
+:root {
+  --nav-offset: 6vh; /* valor por defecto para pantallas grandes */
+}
+
+html {
+  scroll-padding-top: var(--nav-offset);
+}
+
+/* Estilos para personajes.html */
+.equipos-list {
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 1.2rem;
+  width: 95%;
+  margin-inline: auto;
+  padding: 0.8rem 1.2rem;
+  box-sizing: border-box;
+}
+
+.equipos-list h2 {
+  flex-basis: 100%;
+  margin: 0.6rem 0 0 0;
+  text-align: center;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: #b85c2e;
+}
+
+.equipos-list li {
+  list-style: none;
+  flex: 1 1 calc(25% - 1.2rem); /* 4 items por fila en pantallas grandes */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 12rem;
+}
+
+.equipos-list a {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: #b85c2e;
+  padding-block: 0.6rem;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+}
+
+/* barra vertical entre items (no usar en el último) */
+.equipos-list li:not(:last-child)::after {
+  content: "|";
+  color: #b85c2e;
+  margin-inline-start: 0.8rem;
+  opacity: 0.9;
+}
+
+.equipo-grid {
+  display: flex;
+  justify-content: center;
+  gap: 0 24px;
+  margin: 0;
+  flex-wrap: wrap;
+  scroll-margin-top: var(--nav-offset);
+}
+
+.equipo-grid h2 {
+  flex-basis: 100%;
+  margin: 0.6rem 0 0 0;
+  text-align: center;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: #b85c2e;
+  scroll-margin-top: calc(
+    var(--nav-offset) + 0.25rem
+  ); /* por si el h2 es objetivo directo */
+}
+
+.personaje-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22vw;
+  min-width: 180px;
+  max-width: 240px;
+}
+
+.personaje-item img {
+  width: 90%;
+  background-color: #fffbe6;
+  height: fit-content;
+  max-height: 220px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.personaje-item h3 {
+  margin: 0;
+  font-size: 1.1em;
+  color: #b85c2e;
+  text-align: center;
+}
+
+.personaje1-item {
+  border: 3px solid orange;
+}
+
+.personaje2-item {
+  border: 3px solid #222;
+}
+
+.personaje3-item {
+  border: 3px solid #e75480;
+}
+
+.personaje4-item {
+  border: 3px solid #7f8fa6;
+}
+
+/* Responsive para móviles */
+@media (max-width: 900px) {
+  .equipos-list li {
+    flex: 1 1 calc(50% - 1rem); /* 2 por fila */
+  }
+  .equipo-grid {
+    gap: 12px;
+  }
+  .personaje-item {
+    width: 45vw;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .equipos-list {
+    gap: 0.6rem 0.6rem;
+    padding-inline: 0.6rem;
+    row-gap: 0.2rem;
+  }
+  .equipos-list li {
+    padding-block: 0;
+    margin-bottom: 0;
+  }
+  .equipos-list a {
+    padding-block: 0.4rem;
+  }
+  .equipos-list li:not(:last-child)::after {
+    display: none; /* quitar separadores en columna */
+  }
+  .equipo-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .personaje-item {
+    width: 90vw;
+    max-width: 98vw;
+  }
+}
